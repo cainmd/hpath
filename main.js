@@ -7,6 +7,10 @@
 //                                                      ~~ (c) SRW, 03 Aug 2012
 //                                                  ~~ last updated 20 May 2013
 
+var radioButton = document .getElementsByName("templateDX");
+//var measList = document.getElementsByName("measurement");
+
+
 (function () {
     'use strict';
 
@@ -52,6 +56,8 @@
         }).data('cycle-instance', cycle(obj))
             .after('<label for="' + key + '">' + obj.short_name + '</label>');
     };
+
+
 
     capitalize = function (x) {
      // This function needs documentation.
@@ -195,7 +201,7 @@
             throw new TypeError('Argument must be an object.');
         }
         var key = uuid();
-        return $('<input/>', {
+        return $('<input>', {
             id: key,
             click: function () {
              // This function needs documentation.
@@ -416,17 +422,17 @@
     window.section = section;
     window.sentence = sentence;
     window.slider = slider;
-
+    window.generate_report = generate_report;
  // Invocations
 
     $(document).ready(function () {
      // This function runs when jQuery decides the page is ready.
         if (location.search.length === 0) {
-         // If no template has been specified, grab "default.js" from the
-         // "templates" branch as a default.
+         // If no template has been specified, load "default.js" from the
+         // "templates" directory.
             location.replace(location.href +
                     ((location.href.slice(-1) === '?') ? '' : '?') +
-                    'http://wilkinson.github.io/hpath/templates/default.js');
+                    'templates/default.js');
             return;
         }
         var original_first_script_url = $('script')[0].src;
@@ -476,6 +482,17 @@
             });
             return;
         });
+        
+        $("input[name='templateDX']").change(function(){
+    // Do something interesting here
+        //alert("Found Ya!!!");
+        useTemplate();
+       //if(radioButton[0].checked == true){
+                //   normalCase(); 
+       //}
+
+        });
+
         (function script_loader(args) {
          // This function needs documentation.
             var url = args.shift();
@@ -492,7 +509,7 @@
                  // Finally, when all scripts have loaded, we assume that all
                  // sections have been created and insert a horizontal line
                  // before each section before generating the initial report.
-                    $('.section').before('<hr/>');
+                    $('.section').before('<hr>');
                     $('#report-output').blur();
                     generate_report();
                 } else {
@@ -514,5 +531,62 @@
     return;
 
 }());
+
+var useTemplate = function(){
+    var checkBoxes, radioButtons;
+
+    if(radioButton[0].checked == true){
+       //normal case
+         checkBoxes = [35,42,56,53,62,86,65,66,70,75,90,83,93,106,115, 118, 122,123]
+         radioButtons = [7,10,13,14,17,18,19,20,21,22,23,24,25,27, 29,35,39,42,48]
+            clickMyButtons(checkBoxes, radioButtons); 
+           // extractNumbers(checkBoxes , radioButtons)
+       };
+
+       if(radioButton[1].checked == true){
+           //aml
+         checkBoxes = [5,8,35,47,48,59,65,66,67,68,70,75,90,83,93,106,107,108,115,116, 121]
+         radioButtons = [7,8,14,15,19,20,21,22,23,24,25,27]
+            clickMyButtons(checkBoxes, radioButtons); 
+       };
+       if(radioButton[2].checked == true){
+            //day 14 
+       }
+       if(radioButton[3].checked == true){
+       //     myeloma
+         checkBoxes = [31,35, 37,37,42,43,44,50,57,58,59,62, 62, 64,64,66,67,68,70,75,90,83,93,106,107,108,115,116, 121]
+         radioButtons = [7,10,13,14,17,18,19,20,21,22,24,25,27]
+         clickMyButtons(checkBoxes, radioButtons); 
+
+       }
+       if(radioButton[4].checked == true){
+         //   NHL 
+         checkBoxes = [35,42,45,57,58,59,65,66,67,68,70,75,90,83,93,106,107,108,115,116, 117, 121]
+         radioButtons = [7,10,13,14,17,18,19,20,21,22,23,24,25,27]
+            clickMyButtons(checkBoxes, radioButtons); 
+       }
+
+       if(radioButton[5].checked == true){
+         //   reset
+         location.reload(true);
+          
+       }
+       
+}
+
+var clickMyButtons = function(checkBoxes, radioButtons){
+ // var checkBoxes = [35,42,45,57,58,59,65,66,67,68,70,75,90,83,93,106,107,108,115,116, 121]
+ // var radioButtons = [6,9,12,13,16,17,18,19,20,21,22,23,24,26,28]
+  for (var i=0;i<checkBoxes.length;i++)
+    { 
+     $('input[type=checkbox]')[checkBoxes[i]].click()  
+    }
+
+  for (var j=0; j< radioButtons.length ; j++){
+      $('input[type=radio]')[radioButtons[j]].click()
+  }
+};
+
+
 
 //- vim:set syntax=javascript:
