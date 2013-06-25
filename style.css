@@ -20,7 +20,7 @@ a:hover {
 }
 
 body {
-    background-color: #CCCCCC;
+    background-color: #ebebeb;
     color: black;
     font-family: Georgia,Serif;
     font-size: 12pt;
@@ -51,7 +51,11 @@ input {
     visibility: hidden;
 }
 
-input[type="button"],input[type="text"] {
+
+    
+
+
+input[type="button"],input[type="text"], [name="templateDX"] {
  /*
     This "unhides" the "Case Identifier" and "Generate Report" elements.
  */
