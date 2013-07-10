@@ -537,7 +537,7 @@ var useTemplate = function(){
 
     if(radioButton[0].checked == true){
        //normal case
-         checkBoxes = [35,42,56,53,62,86,65,66,70,75,90,83,93,106,115, 118, 122,123]
+         checkBoxes = [35,42,56,53,62,86,65,66,70,74,90,83,93,106,115, 118, 122,123]
          radioButtons = [7,10,13,14,17,18,19,20,21,22,23,24,25,27, 29,35,39,42,48]
             clickMyButtons(checkBoxes, radioButtons); 
            // extractNumbers(checkBoxes , radioButtons)
